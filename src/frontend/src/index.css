@@ -1,0 +1,481 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.875rem;
+
+    /* TCGX — cream + teal-emerald accent + champagne gold */
+    --background: 0.978 0.01 78;
+    --foreground: 0.1 0.01 30;
+    --card: 0.99 0.006 75;
+    --card-foreground: 0.1 0.01 30;
+    --popover: 0.99 0.006 75;
+    --popover-foreground: 0.1 0.01 30;
+    --primary: 0.38 0.125 168;
+    --primary-foreground: 0.98 0.002 0;
+    --secondary: 0.935 0.012 78;
+    --secondary-foreground: 0.1 0.01 30;
+    --muted: 0.935 0.012 78;
+    --muted-foreground: 0.5 0.015 78;
+    --accent: 0.935 0.012 78;
+    --accent-foreground: 0.1 0.01 30;
+    --destructive: 0.577 0.245 27;
+    --destructive-foreground: 0.98 0.002 0;
+    --border: 0.88 0.014 78;
+    --input: 0.88 0.014 78;
+    --ring: 0.38 0.125 168;
+
+    /* Teal-emerald (primary accent) */
+    --teal: 0.38 0.125 168;
+    --teal-light: 0.5 0.115 168;
+    --teal-dark: 0.3 0.13 168;
+
+    /* Champagne gold (premium highlight) */
+    --champagne: 0.78 0.065 88;
+    --champagne-light: 0.88 0.045 88;
+    --champagne-dark: 0.65 0.085 88;
+
+    /* Backward-compat aliases */
+    --green: 0.38 0.125 168;
+    --green-light: 0.5 0.115 168;
+    --green-dark: 0.3 0.13 168;
+    --gold: 0.78 0.065 88;
+    --gold-light: 0.88 0.045 88;
+    --gold-dark: 0.65 0.085 88;
+
+    --nav-text: 0.35 0.01 30;
+    --text-secondary: 0.5 0.015 78;
+    --panel-1: 0.99 0.006 75;
+    --panel-2: 0.96 0.01 78;
+    --panel-3: 0.93 0.014 78;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.38 0.125 168;
+    --chart-4: 0.5 0.115 168;
+    --chart-5: 0.3 0.13 168;
+
+    --sidebar: 0.99 0.006 75;
+    --sidebar-foreground: 0.1 0.01 30;
+    --sidebar-primary: 0.38 0.125 168;
+    --sidebar-primary-foreground: 0.98 0.002 0;
+    --sidebar-accent: 0.935 0.012 78;
+    --sidebar-accent-foreground: 0.1 0.01 30;
+    --sidebar-border: 0.88 0.014 78;
+    --sidebar-ring: 0.38 0.125 168;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Display font helper */
+  .font-display {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+  .font-serif-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  /* Teal accent utilities */
+  .text-teal {
+    color: oklch(var(--teal));
+  }
+  .bg-teal {
+    background: oklch(var(--teal));
+  }
+  .border-teal {
+    border-color: oklch(var(--teal));
+  }
+  .teal-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--teal-light)),
+      oklch(var(--teal-dark))
+    );
+  }
+  .teal-text-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--teal-light)),
+      oklch(var(--teal-dark))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Champagne gold utilities */
+  .text-champagne {
+    color: oklch(var(--champagne));
+  }
+  .bg-champagne {
+    background: oklch(var(--champagne));
+  }
+  .border-champagne {
+    border-color: oklch(var(--champagne));
+  }
+  .champagne-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--champagne-light)),
+      oklch(var(--champagne-dark))
+    );
+  }
+  .champagne-text-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--champagne-light)),
+      oklch(var(--champagne-dark))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Backward-compat green aliases */
+  .text-green {
+    color: oklch(var(--teal));
+  }
+  .bg-green {
+    background: oklch(var(--teal));
+  }
+  .border-green {
+    border-color: oklch(var(--teal));
+  }
+  .green-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--teal-light)),
+      oklch(var(--teal-dark))
+    );
+  }
+  .green-text-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--teal-light)),
+      oklch(var(--teal-dark))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Backward-compat gold aliases */
+  .text-gold {
+    color: oklch(var(--champagne));
+  }
+  .bg-gold {
+    background: oklch(var(--champagne));
+  }
+  .border-gold {
+    border-color: oklch(var(--champagne));
+  }
+  .gold-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--champagne-light)),
+      oklch(var(--champagne-dark))
+    );
+  }
+  .gold-text-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--champagne-light)),
+      oklch(var(--champagne-dark))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card glow effects */
+  .teal-glow {
+    box-shadow: 0 0 30px oklch(var(--teal) / 0.12), 0 0 60px
+      oklch(var(--teal) / 0.06);
+  }
+  .champagne-glow {
+    box-shadow: 0 0 20px oklch(var(--champagne) / 0.2), 0 0 40px
+      oklch(var(--champagne) / 0.08);
+  }
+  .glow-gold {
+    box-shadow: 0 0 30px oklch(var(--champagne) / 0.12), 0 0 60px
+      oklch(var(--champagne) / 0.06);
+  }
+  .glow-green {
+    box-shadow: 0 0 30px oklch(var(--teal) / 0.12), 0 0 60px
+      oklch(var(--teal) / 0.06);
+  }
+
+  /* Holographic effects */
+  .holographic {
+    background: linear-gradient(
+      135deg,
+      oklch(0.85 0.1 280),
+      oklch(0.8 0.12 200),
+      oklch(0.78 0.065 88),
+      oklch(0.82 0.1 140),
+      oklch(0.85 0.1 280)
+    );
+    background-size: 300% 300%;
+    animation: holo-shift 4s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .holographic-border {
+    background: linear-gradient(
+      135deg,
+      oklch(0.85 0.1 280),
+      oklch(0.8 0.12 200),
+      oklch(0.78 0.065 88),
+      oklch(0.82 0.1 140)
+    );
+    background-size: 300% 300%;
+    animation: holo-shift 4s ease-in-out infinite;
+  }
+
+  @keyframes holo-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Premium card hover */
+  .card-premium-hover {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s
+      cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s;
+  }
+  .card-premium-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px -8px oklch(var(--teal) / 0.18), 0 4px 12px
+      oklch(0.1 0.008 30 / 0.1);
+    border-color: oklch(var(--teal) / 0.35);
+  }
+
+  /* Panel backgrounds */
+  .panel-1 {
+    background-color: oklch(var(--panel-1));
+  }
+  .panel-2 {
+    background-color: oklch(var(--panel-2));
+  }
+  .panel-3 {
+    background-color: oklch(var(--panel-3));
+  }
+
+  .card-border {
+    border: 1px solid oklch(var(--border));
+  }
+  .letter-wide {
+    letter-spacing: 0.1em;
+  }
+  .letter-wider {
+    letter-spacing: 0.15em;
+  }
+
+  /* Shimmer loading */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      oklch(var(--panel-1)) 25%,
+      oklch(var(--panel-3)) 50%,
+      oklch(var(--panel-1)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* 3D card tilt */
+  .card-tilt {
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+  }
+
+  /* Card flip */
+  .card-flip-container {
+    perspective: 1200px;
+    cursor: pointer;
+  }
+  .card-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .card-flip-container.flipped .card-flip-inner {
+    transform: rotateY(180deg);
+  }
+  .card-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Scrollbar hide */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Spotlight */
+  .spotlight-hero {
+    background: radial-gradient(
+      ellipse 70% 80% at 40% 50%,
+      oklch(0.55 0.1 168 / 0.07) 0%,
+      transparent 100%
+    );
+  }
+
+  /* Rarity colors */
+  .rarity-common {
+    color: oklch(0.5 0.012 78);
+  }
+  .rarity-uncommon {
+    color: oklch(0.42 0.12 145);
+  }
+  .rarity-rare {
+    color: oklch(0.42 0.12 240);
+  }
+  .rarity-ultra-rare {
+    color: oklch(0.45 0.14 290);
+  }
+  .rarity-secret-rare {
+    color: oklch(var(--champagne));
+  }
+
+  /* Confetti */
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+  .confetti-piece {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confetti-fall linear forwards;
+  }
+
+  /* Float up */
+  @keyframes float-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-float-up {
+    animation: float-up 0.5s ease-out forwards;
+  }
+
+  /* Pulse teal */
+  @keyframes pulse-gold {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 oklch(var(--teal) / 0.35);
+    }
+    50% {
+      box-shadow: 0 0 0 8px oklch(var(--teal) / 0);
+    }
+  }
+  .animate-pulse-gold {
+    animation: pulse-gold 2s ease-in-out infinite;
+  }
+
+  /* Ticker */
+  @keyframes ticker-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .ticker-content {
+    animation: ticker-scroll 30s linear infinite;
+    display: flex;
+    white-space: nowrap;
+  }
+  .ticker-content:hover {
+    animation-play-state: paused;
+  }
+}
